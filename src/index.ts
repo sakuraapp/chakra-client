@@ -1,7 +1,8 @@
 import 'isomorphic-fetch'
 import WebSocket from 'isomorphic-ws'
 import { EventEmitter } from 'events'
-import SimplePeer, { Instance } from 'simple-peer'
+import SimplePeer, { Instance, Options as SimplePeerOptions } from 'simple-peer'
+import SimplePeerLight from 'simple-peer-light'
 
 const ACTION_CONNECT = 'Connect'
 
@@ -52,6 +53,14 @@ interface Callback {
 
 export class ClientError extends Error {
     public msg?: Message
+}
+
+function createPeer(opts?: SimplePeerOptions): Instance {
+    if (typeof window === 'undefined') {
+        return new SimplePeer(opts)
+    } else {
+        return new SimplePeerLight(opts)
+    }
 }
 
 const DEFAULT_OPTS = {
@@ -264,7 +273,7 @@ export class ChakraClient extends EventEmitter {
             )
 
             if (!peer) {
-                peer = new SimplePeer({ initiator: true, wrtc: this.opts.wrtc })
+                peer = createPeer({ initiator: true, wrtc: this.opts.wrtc })
             }
 
             if (!video) {

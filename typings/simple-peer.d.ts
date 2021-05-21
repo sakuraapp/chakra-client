@@ -104,3 +104,9 @@ declare module 'simple-peer' {
 
     export = SimplePeer
 }
+
+declare module 'simple-peer-light' {
+    import SimplePeer from 'simple-peer'
+
+    export = SimplePeer
+}

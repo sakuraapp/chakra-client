@@ -1,6 +1,6 @@
 {
   "name": "@sakuraapp/chakra-client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Client for Sakura's WebRTC gateway",
   "main": "dist/index.js",
   "scripts": {
@@ -39,6 +39,7 @@
     "isomorphic-fetch": "^3.0.0",
     "isomorphic-ws": "^4.0.1",
     "simple-peer": "^9.9.3",
+    "simple-peer-light": "^9.10.0",
     "ws": "^7.4.1"
   }
 }
